@@ -1,34 +1,44 @@
-%global pecl_name yaml
-%if "%{php_version}" < "5.6"
-%global ini_name  %{pecl_name}.ini
-%else
-%global ini_name  40-%{pecl_name}.ini
-%endif
+# IUS spec file for php56u-pecl-yaml, forked from:
+#
+# Fedora spec file for php-pecl-yaml
 
-%{!?__pecl:      %global __pecl      %{_bindir}/pecl}
 
-Name:           php-pecl-yaml
-Version:        1.1.1
-Release:        6%{?dist}
+%define pecl_name   yaml
+%global with_zts    0%{?__ztsphp:1}
+%global ini_name    40-%{pecl_name}.ini
+%global php_base    php56u
+
+Name:           %{php_base}-pecl-%{pecl_name}
+Version:        1.2.0
+Release:        1%{?dist}
 Summary:        Support for YAML 1.1 serialization using the LibYAML library
 Group:          Development/Languages
 
 License:        MIT
-URL:            http://code.google.com/p/php-yaml/
+URL:            https://github.com/php/pecl-file_formats-yaml
 Source0:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 
-BuildRequires:      php-devel >= 5.2.0
-BuildRequires:      php-pear
+BuildRequires:      %{php_base}-devel
+BuildRequires:      %{php_base}-pear
 BuildRequires:      libyaml-devel
 Requires:           php(zend-abi) = %{php_zend_api}
 Requires:           php(api) = %{php_core_api}
-Requires(post):     %{__pecl}
-Requires(postun):   %{__pecl}
+Requires(post):     %{php_base}-pear
+Requires(postun):   %{php_base}-pear
 
 Provides:       php-%{pecl_name} = %{version}
 Provides:       php-%{pecl_name}%{?_isa} = %{version}
 Provides:       php-pecl(%{pecl_name}) = %{version}
 Provides:       php-pecl(%{pecl_name})%{?_isa} = %{version}
+Provides:       %{php_base}-%{pecl_name} = %{version}
+Provides:       %{php_base}-%{pecl_name}%{?_isa} = %{version}
+Provides:       %{php_base}-pecl(%{pecl_name}) = %{version}
+Provides:       %{php_base}-pecl(%{pecl_name})%{?_isa} = %{version}
+Provides:       php-pecl-%{pecl_name} = %{version}-%{release}
+Provides:       php-pecl-%{pecl_name}%{?_isa} = %{version}-%{release}
+
+Conflicts: php-pecl-%{pecl_name} < %{version}-%{release}
+
 
 %if 0%{?fedora} < 20 && 0%{?rhel} < 7
 # Filter private shared
@@ -116,6 +126,9 @@ fi
 
 
 %changelog
+* Wed Feb 03 2016 Ben Harper <ben.harper@rackspace.com> - 1.2.0-1.ius
+- porting from Fedora
+
 * Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.1-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
