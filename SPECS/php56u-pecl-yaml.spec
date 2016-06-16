@@ -39,12 +39,10 @@ Provides:       php-pecl-%{pecl_name}%{?_isa} = %{version}-%{release}
 
 Conflicts: php-pecl-%{pecl_name} < %{version}-%{release}
 
-
-%if 0%{?fedora} < 20 && 0%{?rhel} < 7
-# Filter private shared
+# RPM 4.8
 %{?filter_provides_in: %filter_provides_in %{_libdir}/.*\.so$}
+%{?filter_provides_in: %filter_provides_in %{php_ztsextdir}/.*\.so$}
 %{?filter_setup}
-%endif
 
 
 %description
@@ -126,6 +124,9 @@ fi
 
 
 %changelog
+* Thu Jun 16 2016 Ben Harper <ben.harper@rackspace.com> - 1.2.0-2.ius
+- update filters to include zts
+
 * Wed Feb 03 2016 Ben Harper <ben.harper@rackspace.com> - 1.2.0-1.ius
 - porting from Fedora
 
