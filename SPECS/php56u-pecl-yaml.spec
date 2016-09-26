@@ -9,17 +9,14 @@
 %global php_base    php56u
 
 Name:           %{php_base}-pecl-%{pecl_name}
-Version:        1.2.0
-Release:        2%{?dist}
+Version:        1.3.0
+Release:        1%{?dist}
 Summary:        Support for YAML 1.1 serialization using the LibYAML library
 Group:          Development/Languages
 
 License:        MIT
 URL:            https://github.com/php/pecl-file_formats-yaml
 Source0:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
-
-#Source https://github.com/php/pecl-file_formats-yaml/commit/dccdf8c52a7cd7613e4993c320024aa95a20f83f
-Patch0:         0001-Format-timestamps-with-milliseconds.patch
 
 BuildRequires:      %{php_base}-devel
 BuildRequires:      %{php_base}-pear
@@ -59,7 +56,6 @@ constructs as valid YAML 1.1 documents.
 sed -e '/role="test"/d' package.xml >%{pecl_name}-%{version}/package.xml
 
 cd %{pecl_name}-%{version}
-%patch0 -p1 -b .timestamps
 
 %build
 cd %{pecl_name}-%{version}
@@ -129,6 +125,10 @@ fi
 
 
 %changelog
+* Mon Sep 26 2016 Ben Harper <ben.harper@rackspace.com> - 1.3.0-1.ius
+- Latest upstream
+- remove Patch0, fixed upstream
+
 * Thu Jun 16 2016 Ben Harper <ben.harper@rackspace.com> - 1.2.0-2.ius
 - update filters to include zts
 - add Patch0 to address datetime issue
