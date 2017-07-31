@@ -9,7 +9,7 @@
 %global php_base    php56u
 
 Name:           %{php_base}-pecl-%{pecl_name}
-Version:        1.3.0
+Version:        1.3.1
 Release:        1%{?dist}
 Summary:        Support for YAML 1.1 serialization using the LibYAML library
 Group:          Development/Languages
@@ -125,6 +125,9 @@ fi
 
 
 %changelog
+* Mon Jul 31 2017 Ben Harper <ben.harper@rackspace.com> - 1.3.1-1.ius
+- Latest upstream
+
 * Mon Sep 26 2016 Ben Harper <ben.harper@rackspace.com> - 1.3.0-1.ius
 - Latest upstream
 - remove Patch0, fixed upstream
