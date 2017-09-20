@@ -18,13 +18,13 @@ License:        MIT
 URL:            https://github.com/php/pecl-file_formats-yaml
 Source0:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 
+BuildRequires:      pecl >= 1.10.0
 BuildRequires:      %{php_base}-devel
-BuildRequires:      %{php_base}-pear
 BuildRequires:      libyaml-devel
 Requires:           php(zend-abi) = %{php_zend_api}
 Requires:           php(api) = %{php_core_api}
-Requires(post):     %{php_base}-pear
-Requires(postun):   %{php_base}-pear
+Requires(post):     pecl >= 1.10.0
+Requires(postun):   pecl >= 1.10.0
 
 Provides:       php-%{pecl_name} = %{version}
 Provides:       php-%{pecl_name}%{?_isa} = %{version}
