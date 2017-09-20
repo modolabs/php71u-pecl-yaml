@@ -9,7 +9,7 @@
 %global php_base    php71u
 
 Name:           %{php_base}-pecl-%{pecl_name}
-Version:        1.3.1
+Version:        2.0.2
 Release:        1%{?dist}
 Summary:        Support for YAML 1.1 serialization using the LibYAML library
 Group:          Development/Languages
