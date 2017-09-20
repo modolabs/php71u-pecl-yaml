@@ -1,4 +1,4 @@
-# IUS spec file for php56u-pecl-yaml, forked from:
+# IUS spec file for php71u-pecl-yaml, forked from:
 #
 # Fedora spec file for php-pecl-yaml
 
@@ -6,7 +6,7 @@
 %define pecl_name   yaml
 %global with_zts    0%{?__ztsphp:1}
 %global ini_name    40-%{pecl_name}.ini
-%global php_base    php56u
+%global php_base    php71u
 
 Name:           %{php_base}-pecl-%{pecl_name}
 Version:        1.3.1
